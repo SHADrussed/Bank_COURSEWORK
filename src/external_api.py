@@ -12,9 +12,13 @@ def get_amount_of_transaction(transaction: Dict[str, Any]) -> float | None:
     try:
         operation_amount = transaction.get("operationAmount", {})
         amount = float(operation_amount.get("amount"))
-        currency = operation_amount.get("currency", {}).get("code")
-    except (AttributeError, TypeError, ValueError):
+        currency = operation_amount.get("currency", {}).get("code")  # Убрано значение по умолчанию USD
+    except (AttributeError, TypeError, ValueError, KeyError):
         print("Ошибка в данных")
+        return None
+
+    # Если валюта не найдена или не указана
+    if not currency:
         return None
 
     if currency == "RUB":
@@ -26,7 +30,7 @@ def get_amount_of_transaction(transaction: Dict[str, Any]) -> float | None:
 
     try:
         response = requests.get(url, headers=headers, data=payload)
-        response.raise_for_status()  # Raise an exception for HTTP errors
+        response.raise_for_status()
         return float(response.json()["result"])
     except requests.exceptions.RequestException as e:
         print(f"API request failed: {e}")

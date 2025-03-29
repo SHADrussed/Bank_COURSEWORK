@@ -1,10 +1,13 @@
-from typing import Any, Generator
+from typing import Any, Generator, Iterable
 
 
-def filter_by_currency(list_of_dict: list[dict[str, Any]], currency: str) -> list[dict[str, Any]]:
-    return list(
-        filter(lambda x: x.get("operationAmount", {}).get("currency", {}).get("name") == currency, list_of_dict)
-    )
+def filter_by_currency(transactions: Iterable[dict[str, Any]], currency: str) -> list[dict[str, Any]]:
+    """Фильтрует транзакции по коду валюты."""
+    return [
+        transaction
+        for transaction in transactions
+        if transaction.get("operationAmount", {}).get("currency", {}).get("code") == currency
+    ]
 
 
 def transaction_descriptions(list_of_dict: list[dict[str, Any]], start: int = 0) -> Generator:

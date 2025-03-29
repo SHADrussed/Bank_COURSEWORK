@@ -1,11 +1,20 @@
 import json
 import logging
-from typing import List, Dict, Any, cast
+from pathlib import Path
+from typing import Any, Dict, List, cast
 
+# Создаем директорию для логов относительно корня проекта
+project_root = Path(__file__).parent.parent
+log_dir = project_root / "logs"
+log_dir.mkdir(exist_ok=True)  # Создаем директорию, если ее нет
+
+# Настройка логгера
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-handler = logging.FileHandler("logs/utils.log", mode="w", encoding="utf-8")
+# Указываем абсолютный путь к файлу логов
+log_file = log_dir / "utils.log"
+handler = logging.FileHandler(log_file, mode="w", encoding="utf-8")
 handler.setLevel(logging.INFO)
 
 formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
@@ -24,7 +33,8 @@ def get_list_dict_transactions(the_way: str) -> List[Dict[str, Any]]:
         return []
 
 
-# Пример использования функции
 if __name__ == "__main__":
-    transactions = get_list_dict_transactions("transactions.json")
+    # Пример использования с абсолютным путем
+    transactions_path = project_root / "data" / "transactions.json"  # Пример пути к данным
+    transactions = get_list_dict_transactions(str(transactions_path))
     print(transactions)

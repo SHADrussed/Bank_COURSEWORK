@@ -1,5 +1,5 @@
 from functools import wraps
-from typing import Callable, Optional, Any, TypeVar, cast
+from typing import Any, Callable, Optional, TypeVar, cast
 
 # Define a type variable for the return type of the decorated function
 F = TypeVar("F", bound=Callable[..., Any])

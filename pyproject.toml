@@ -9,7 +9,10 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "python-dotenv (>=1.0.1,<2.0.0)",
-    "requests (>=2.32.3,<3.0.0)"
+    "requests (>=2.32.3,<3.0.0)",
+    "pandas (>=2.2.3,<3.0.0)",
+    "numpy (>=2.2.4,<3.0.0)",
+    "openpyxl (>=3.1.5,<4.0.0)"
 ]
 
 
@@ -27,11 +30,16 @@ mypy = "^1.14.1"
 [tool.poetry.group.dev.dependencies]
 pytest-cov = "^6.0.0"
 pytest = "^8.3.4"
+python = "^3.13"
+pandas = "2.2.3"
 
 [tool.mypy]
 disallow_untyped_defs = true
 warn_return_any = true
 exclude = '.venv'
+
+[tool.poetry]
+package-mode = false
 
 [tool.black]
 # Максимальная длина строки

@@ -1,6 +1,7 @@
-import pytest
-from typing import Callable, Any, Union, cast
 from pathlib import Path
+from typing import Any, Callable, Union, cast
+
+import pytest
 
 from src.decorators import log
 
