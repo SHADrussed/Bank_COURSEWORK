@@ -15,9 +15,9 @@ def read_transactions_from_excel(file_path):
     df = pd.read_excel(file_path)
     return df.to_dict("records")
 
-
-csv_data = read_transactions_from_csv(r"D:\PythonProjects\Bank_Homework\data\transactions.csv")
-excel_data = read_transactions_from_excel(r"D:\PythonProjects\Bank_Homework\data\transactions_excel.xlsx")
-
-print(csv_data)
-print(excel_data)
+#
+# csv_data = read_transactions_from_csv(r"D:\PythonProjects\Bank_Homework\data\transactions.csv")
+#excel_data = read_transactions_from_excel(r"D:\PythonProjects\Bank_Homework\data\operations.xlsx")
+#
+# print(csv_data)
+#print(excel_data)
